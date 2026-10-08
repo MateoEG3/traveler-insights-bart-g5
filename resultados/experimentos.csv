@@ -1,0 +1,16 @@
+id,modelo,acc_cv,f1_macro_cv,acc_holdout,f1_macro_holdout,tiempo_s,cambio,entrada,split,seed,fecha,base,lr,max_length,pesos_clase,congelar_encoder,f1_macro_cv_std,f1_neg_cv,f1_neu_cv,f1_pos_cv,epoca_media,params_entrenables,hardware
+B0,B0 clase mayoritaria,0.7779,0.2917,0.7806,0.2923,0.0,piso,-,5-fold estratificado + hold-out,42,2026-10-07 14:11,,,,,,,,,,,,
+B1,"B1 TF-IDF+RL, texto",0.8821,0.6275,0.8632,0.5184,10.1971,baseline,texto,5-fold estratificado + hold-out,42,2026-10-07 14:11,,,,,,,,,,,,
+B2,"B2 TF-IDF+RL, texto, pesos de clase",0.9032,0.7137,0.9003,0.7539,9.0221,B1 + pesos de clase,texto,5-fold estratificado + hold-out,42,2026-10-07 14:11,,,,,,,,,,,,
+B3,"B3 TF-IDF+RL, texto+metadatos, pesos",0.9926,0.9854,0.9972,0.9969,9.2985,B2 + metadatos del lugar,texto+metadatos,5-fold estratificado + hold-out,42,2026-10-07 14:11,,,,,,,,,,,,
+R,R  regla sobre Valoración_num (atajo),1.0,1.0,1.0,1.0,0.0,"regla (atajo, no es un modelo)",Valoración_num,5-fold estratificado + hold-out,42,2026-10-07 14:11,,,,,,,,,,,,
+E1,vgaraujov/bart-base-spanish,0.8933,0.6059,0.8746,0.5591,1205.5343,"BARTO, configuración base",texto,5-fold estratificado + hold-out,42,2026-10-07 14:32,-,0.0,384.0,False,False,0.041,0.0833,0.932,0.8025,4.2,140012547.0,Tesla T4
+E2,vgaraujov/bart-base-spanish,0.8871,0.5735,0.886,0.5746,845.0441,learning rate 3e-5 -> 5e-5,texto,5-fold estratificado + hold-out,42,2026-10-07 14:46,E1,0.0,384.0,False,False,0.0206,0.0,0.9276,0.7928,2.2,140012547.0,Tesla T4
+E3,vgaraujov/bart-base-spanish,0.8859,0.6729,0.886,0.6325,1266.3579,pesos de clase en la pérdida,texto,5-fold estratificado + hold-out,42,2026-10-07 15:07,E1,0.0,384.0,True,False,0.0994,0.303,0.9277,0.7881,4.8,140012547.0,Tesla T4
+E4,vgaraujov/bart-base-spanish,0.8908,0.5771,0.8889,0.5762,625.2951,max_length 384 -> 128,texto,5-fold estratificado + hold-out,42,2026-10-07 15:17,E1,0.0,128.0,False,False,0.0174,0.0,0.93,0.8012,3.6,140012547.0,Tesla T4
+E5,vgaraujov/bart-base-spanish,0.8821,0.5696,0.8803,0.568,895.9619,encoder congelado,texto,5-fold estratificado + hold-out,42,2026-10-07 15:32,E1,0.0,384.0,False,True,0.0131,0.0,0.9241,0.7847,4.2,58093059.0,Tesla T4
+E6,facebook/bart-base,0.9007,0.6112,0.8946,0.5769,1497.1804,checkpoint facebook/bart-base (inglés),texto,5-fold estratificado + hold-out,42,2026-10-07 15:57,E1,0.0,384.0,False,False,0.025,0.087,0.9375,0.8091,4.8,140013315.0,Tesla T4
+E7a,vgaraujov/bart-base-spanish,0.8821,0.6173,0.8775,0.5673,1478.3848,semilla 42 -> 43,texto,5-fold estratificado + hold-out,43,2026-10-07 16:22,E3,0.0,384.0,True,False,0.0447,0.1333,0.9243,0.7941,5.6,140012547.0,Tesla T4
+E7b,vgaraujov/bart-base-spanish,0.8685,0.6324,0.8775,0.5682,1256.9739,semilla 42 -> 44,texto,5-fold estratificado + hold-out,44,2026-10-07 16:43,E3,0.0,384.0,True,False,0.1025,0.2051,0.9153,0.7768,4.2,140012547.0,Tesla T4
+E8,vgaraujov/bart-base-spanish,1.0,1.0,1.0,1.0,1278.2989,entrada texto -> texto + metadatos del lugar,texto+metadatos,5-fold estratificado + hold-out,42,2026-10-07 17:04,E3,0.0,384.0,True,False,0.0,1.0,1.0,1.0,3.6,140012547.0,Tesla T4
+F,vgaraujov/bart-base-spanish,,,0.8632,0.6058,234.639,modelo final: E3 con todo train,texto,todo train + hold-out,42,2026-10-07 17:08,E3,0.0,384.0,True,False,,,,,5.0,140012547.0,Tesla T4
